@@ -1,18 +1,32 @@
 import type { Request, Response } from "express"
-import { createTodo, getAllTodos } from "../services/todo-service"
-import { bodyTodoSchema } from "../schemas/todo-schema"
+import {
+  createTodo,
+  deleteTodo,
+  getAllTodos,
+  getTodoById,
+} from "../services/todo-service"
+import { bodyTodoSchema, paramsTodoSchema } from "../schemas/todo-schema"
 
 export async function getTodosController(req: Request, res: Response) {
   try {
-    const todos = await getAllTodos()
+    const tasks = await getAllTodos()
 
-    res.status(200).send(todos)
+    res.status(200).send(tasks)
   } catch (error) {
     res.status(500).send({ error: "Erro ao obter as tarefas" })
   }
 }
 
-export async function getTodoController() {}
+export async function getTodoController(req: Request, res: Response) {
+  try {
+    const { id } = paramsTodoSchema.parse(req.params)
+    const task = await getTodoById({ id })
+
+    res.status(200).send(task)
+  } catch (error) {
+    res.status(500).send({ error: "Erro ao obter a tarefa" })
+  }
+}
 
 export async function addPostController(req: Request, res: Response) {
   try {
@@ -29,4 +43,13 @@ export async function updateTodoController() {}
 
 export async function updateTodoCompletedController() {}
 
-export async function removeTodoController() {}
+export async function removeTodoController(req: Request, res: Response) {
+  try {
+    const { id } = paramsTodoSchema.parse(req.params)
+    await deleteTodo({ id })
+
+    res.status(200).send({ message: "Tarefa deletada" })
+  } catch (error) {
+    res.status(500).send({ error: "Erro ao deletar tarefa" })
+  }
+}
