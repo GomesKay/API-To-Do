@@ -1,6 +1,19 @@
 <h1 align="center">API To-Do</h1>
 
+<img src="https://github.com/user-attachments/assets/f25877eb-0b9c-4fe9-850b-e0b73004f9e1" alt="" />
+
 <div align="center">
+
+  ## 🔧 Arquitetura da API
+
+  | HTTP | Rotas | Descrição |
+  | --- | --- | --- |
+  | `GET` | /todos | Retorna todas as tarefas |
+  | `GET` | /todos/:id | Retorna uma tarefa |
+  | `POST` | /todos | Cria uma nova tarefa |
+  | `PUT` | /todos/:id | Atualiza uma tarefa |
+  | `PATCH` | /todos/:id/completed | Atualiza a tarefa como concluída |
+  | `DELETE` | /todos/:id | Deleta uma tarefa |
 
   ## 🚀 Tecnologias
   <img title="Biome" src="https://github.com/user-attachments/assets/ca50003f-5d35-4299-9474-30b305ae07cb" alt="Biome" width="50" /> &nbsp;
