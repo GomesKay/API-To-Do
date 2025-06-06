@@ -3,6 +3,8 @@ import type {
   CreateTodoInput,
   DeleteTodoInput,
   GetTodoByIdInput,
+  UpdateTodoCompletedInput,
+  UpdateTodoInput,
 } from "../types/todo"
 
 export async function getAllTodos() {
@@ -21,9 +23,19 @@ export async function createTodo({ title }: CreateTodoInput) {
   })
 }
 
-export async function updateTodo() {}
+export async function updateTodo({ id, title }: UpdateTodoInput) {
+  return await prisma.todo.update({
+    where: { id },
+    data: { title },
+  })
+}
 
-export async function updateTodoCompleted() {}
+export async function updateTodoCompleted({ id }: UpdateTodoCompletedInput) {
+  return await prisma.todo.update({
+    where: { id },
+    data: { completed: true },
+  })
+}
 
 export async function deleteTodo({ id }: DeleteTodoInput) {
   return await prisma.todo.delete({

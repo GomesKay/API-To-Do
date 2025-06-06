@@ -5,5 +5,5 @@ export const bodyTodoSchema = z.object({
 })
 
 export const paramsTodoSchema = z.object({
-  id: z.string(),
+  id: z.string().uuid(),
 })
