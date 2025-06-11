@@ -10,7 +10,8 @@
     "prisma:generate": "prisma generate",
     "biome": "biome format .",
     "biome:check": "biome check .",
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --watch --passWithNoTests"
   },
   "keywords": [],
   "author": "",
